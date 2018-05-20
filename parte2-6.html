@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parte 2-6</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app" class="container">
+    <h4>¿Has trabajado con Vue.js?</h4>
+    <div class="radio">
+        <label class="radio-inline">
+            <input type="radio" value="1" v-model="vue.prop" :value="true"> Sí
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="0" v-model="vue.prop" :value="false"> No
+
+        </label>
+    </div>
+
+    <div v-if="vue.exp">
+
+        <div class="form-group" >                             <!---v-if es una directiva que comprueba una expresion de Js-->
+            <label> ¿Cuantos años de experiencia tienes? </label>               <!---Se puede anidar con v-else o v-else-if-->
+            <input type="number" class="form-control" v-model="vue.years">   <!---v-model enlaza el atributo years del objeto prueba con el input-->
+        </div>
+
+
+        <div class="form-group" v-if="vue.years < 2" >
+            <label>¿Qué te motivó a aprender Vue.js?</label>
+            <textarea class="form-control" rows="4" v-model="vue.descripcion"></textarea>
+        </div>
+
+        <div class="form-group" v-if="vue.years >= 2" >
+            <label>Cuentanos tu experiencia con Vue.js</label>
+            <textarea class="form-control" rows="4" v-model="vue.descripcion"></textarea>
+            <label v-if="vue.descripcion.length==0">El campo está vacío</label>
+            <label v-else-if="vue.descripcion.length>1000"> El mensaje es demasiado largo </label>
+        </div>
+
+
+    </div>
+</div>
+
+
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data: {
+            vue: {                      //Objeto creado dentro de data, compuesto por diferentes propiedades
+                exp: null ,
+                years: 0,
+                descripcion: ''
+
+            }
+        }
+    });
+</script>
+</body>
+</html>

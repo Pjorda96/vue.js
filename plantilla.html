@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plantilla</title>
+
+    <script src="vue.js"></script>
+
+</head>
+<body id="app">
+
+    <h1 id="title">Bienvenido, {{ name }}</h1>
+
+    <input type="text" v-model="name" class="form-control">
+
+    <hr>
+
+    <pre>{{ $data | json }}</pre>
+
+    <script type="text/javascript">
+
+        new Vue({
+            el: "#app",
+            data: {
+                name: "Pablo"
+            }
+        });
+
+        /*
+        $(document).ready(function () {
+
+            $('#name').keyup(function () {
+                $('#title').text("Bienvenido " + $('#name').val());
+            });
+
+        });
+        */
+
+
+    </script>
+</body>
+</html>
