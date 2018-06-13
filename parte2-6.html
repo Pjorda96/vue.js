@@ -41,9 +41,9 @@
         <!-- -if="vue.years >= 2"-->
         <div class="form-group" v-else>
             <label>Cuentanos tu experiencia con Vue.js</label>
-            <textarea class="form-control" rows="4" v-model="vue.descripcion"></textarea>
-            <label v-if="vue.description.length==0">El campo está vacío</label>
-            <label v-else-if="vue.description.length>1000"> El mensaje es demasiado largo </label>
+            <textarea class="form-control" rows="4" v-model="vue.description"></textarea>
+            <label v-if="vue.description.length == 0">El campo está vacío</label>
+            <label v-else-if="vue.description.length > 1000"> El mensaje es demasiado largo </label>
         </div>
 
     </template>
