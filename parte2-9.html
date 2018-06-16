@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parte 2-9</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<div id="app" class="container">
+    <h4>Todas las tareas</h4>
+    <ul>
+        <li v-for="task of tasks">
+            {{ task.title }}
+        </li>
+    </ul>
+
+    <h4 v-if="pendingTasks.length">Tareas pendientes</h4>
+    <ul v-if="pendingTasks.length">
+        <li v-for="task of pendingTasks">
+            {{ task.title }}
+        </li>
+    </ul>
+
+    <form>
+        <!--<form @submit.prevent="createTask">-->
+        <input type="text" v-model="new_task" class="form-control">
+        <button class="btn btn-primary" @click="createTask(true, $event)">
+            Crear tarea pendiente
+        </button>
+        <button class="btn btn-info" @click="createTask(false, $event )">
+            Crear tarea finalizada
+        </button>
+    </form>
+
+    <footer class="footer">
+        <p>&copy; Pablo</p>
+    </footer>
+</div>
+
+<script src="vue.js"></script>
+
+<script>
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            new_task: '',
+            tasks: [
+                {
+                    title: 'Aprender Vue.js',
+                    pending: false
+                },
+                {
+                    title: 'Tarea n2',
+                    pending: false
+                },
+                {
+                    title: 'Tarea n3',
+                    pending: true
+                },
+            ]
+        },
+        computed: {
+            pendingTasks: function () {
+                return this.tasks.filter(function (item) {
+                    return item.pending;
+                });
+            }
+        },
+        methods: {
+            createTask: function (pending, event) {
+            /*createTask: function (event) {
+                event.preventDefault();*/
+
+                event.preventDefault();
+
+                this.tasks.push({
+                    title: this.new_task,
+                    pending: pending
+                });
+                this.new_task = '';
+            }
+        }
+    });
+</script>
+</body>
+</html>
