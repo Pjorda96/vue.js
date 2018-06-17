@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parte 3-12</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+<div id="app" class="container">
+    <h2>Tareas</h2>
+
+    <ul class="list-group task">
+        <li v-for="task in tasks" class="list-group-item"
+            :class="{editing: task.editing, completed: !task.pending}">
+            <a href="#"><span class="glyphicon"
+                              :class="task.pending ? 'glyphicon-unchecked' : 'glyphicon-check'"
+                              aria-hidden="true"></span></a>
+
+            <template v-if="!task.editing">
+                <span class="description">{{ task.description }}</span>
+
+                <div>
+                    <a href="#">
+                <span class="glyphicon glyphicon-edit"
+                      aria-hidden="true"></span>
+                    </a>
+                    <a href="#">
+                <span class="glyphicon glyphicon-trash"
+                      aria-hidden="true"></span>
+                    </a>
+                </div>
+            </template>
+
+            <template v-else="task.editing" >
+                <input type="text" v-model="task.description">
+
+                <div>
+                <a href="#">
+                <span class="glyphicon glyphicon-ok"
+                      aria-hidden="true"></span>
+                </a>
+                <a href="#">
+                <span class="glyphicon glyphicon-remove"
+                      aria-hidden="true"></span>
+                </a>
+            </div>
+            </template>
+        </li>
+        <!--<li class="list-group-item editing">
+            <a href="#"><span class="glyphicon glyphicon-unchecked"
+                              aria-hidden="true"></span></a>
+
+            <input type="text" value="Susucribirse">
+
+            <div>
+                <a href="#">
+                <span class="glyphicon glyphicon-ok"
+                      aria-hidden="true"></span>
+                </a>
+                <a href="#">
+                <span class="glyphicon glyphicon-remove"
+                      aria-hidden="true"></span>
+                </a>
+            </div>
+        </li>
+        <li class="list-group-item completed">
+            <a href="#"><span class="glyphicon glyphicon-check"
+                              aria-hidden="true"></span></a>
+
+            <span class="description">Crear una API</span>
+
+            <div>
+                <a href="#">
+                <span class="glyphicon glyphicon-edit"
+                      aria-hidden="true"></span>
+                </a>
+                <a href="#">
+                <span class="glyphicon glyphicon-trash"
+                      aria-hidden="true"></span>
+                </a>
+            </div>
+        </li>-->
+    </ul>
+
+    <footer class="footer">
+        <p>&copy; Pablo</p>
+    </footer>
+</div>
+
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--<script src="vue.js"></script>-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>-->
+
+
+<script>
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            tasks: [
+                {
+                    description: 'Aprender Vue.js',
+                    pending: true,
+                    editing: false
+                },
+                {
+                    description: 'Susucribirse',
+                    pending: true,
+                    editing: true
+                },
+                {
+                    description: 'Crear una API',
+                    pending: false,
+                    editing: false
+                }
+            ]
+        }
+    });
+</script>
+</body>
+</html>
