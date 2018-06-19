@@ -39,7 +39,7 @@ Vue.component('app-task', {
             this.editing = false;
         },
         remove: function () {
-            this.this.tasks.splice(this.index, 1);
+            this.$emit('remove', this.index);
         },
     }
 });
